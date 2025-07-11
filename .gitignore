@@ -1,0 +1,27 @@
+# Ignora todos os diretórios target gerados pelo Maven
+**/target/
+
+# Adicionais úteis para projetos Java/Maven
+*.class
+*.jar
+*.war
+*.ear
+*.tmp
+*.rej
+*.log
+*.swp
+*.patch
+*.orig
+*.iml
+*.ipr
+*.iws
+.idea/
+.settings/
+.classpath
+.project
+.DS_Store
+*.versionsBackup
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
