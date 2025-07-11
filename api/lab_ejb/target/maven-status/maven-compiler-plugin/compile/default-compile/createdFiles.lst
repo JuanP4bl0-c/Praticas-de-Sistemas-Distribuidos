@@ -1,2 +1,3 @@
-com/example/HelloBean.class
-com/example/HelloServlet.class
+com/example/RestApplication.class
+com/example/HelloResource.class
+com/example/HelloService.class
