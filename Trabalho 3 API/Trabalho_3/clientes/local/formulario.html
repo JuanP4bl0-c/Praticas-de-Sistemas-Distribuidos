@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Criar Colmeia</h2>
+  <form action="http://localhost:8080/api/colmeia_new" method="post">
+    Nome Apicultor: <input type="text" name="nomeApicultor" required><br>
+    Capacidade Abelhas: <input type="number" name="capacidadeAbelhas" required><br>
+    Capacidade Mel: <input type="number" name="capacidadeMel" required><br>
+    <input type="submit" value="Criar">
+  </form>
+  
+  <h2>Listar Colmeias</h2>
+  <form action="http://localhost:8080/api/colmeia_list" method="get">
+    Nome Apicultor: <input type="text" name="nomeApicultor"><br>
+    <input type="submit" value="Listar Colmeias">
+  </form>
+  
+  <h2>Adicionar Abelhas</h2>
+  <form action="http://localhost:8080/api/colmeia_add_abelhas" method="post">
+    ID Colmeia: <input type="number" name="idColmeia" required><br>
+    Quantidade: <input type="number" name="quantidade" required><br>
+    Rainha Presente: <input type="checkbox" name="rainhaPresente"><br>
+    <input type="submit" value="Adicionar Abelhas">
+  </form>
+
+  <h2>Remover Colmeia</h2>
+  <form action="http://localhost:8080/api/colmeia_remove" method="post">
+    ID Colmeia: <input type="number" name="idColmeia" required><br>
+    <input type="submit" value="Remover Colmeia">
+  </form>
+
+</body>
+</html>
