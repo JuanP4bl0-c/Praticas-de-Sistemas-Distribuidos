@@ -1,0 +1,171 @@
+Claro! Vou descrever passo a passo o funcionamento do seu projeto e analisar se ele atende aos requisitos citados.
+
+---
+
+## Passo a passo do funcionamento do projeto
+
+### 1. **Servidor (API REST com Spring Boot)**
+- O servidor é uma aplicação Java usando Spring Boot, que expõe uma API REST para gerenciar apiários.
+- Ele utiliza um banco de dados H2 em memória para armazenar informações sobre apicultores e colmeias.
+- Principais entidades:
+  - **Apicultor**: representa o dono das colmeias.
+  - **Colmeia**: representa cada colmeia, com atributos como capacidade de abelhas, capacidade de mel, quantidade de abelhas e presença da rainha.
+- Principais operações (serviços):
+  - **Criar colmeia**: cria uma nova colmeia associada a um apicultor.
+  - **Listar colmeias**: retorna todas as colmeias de um apicultor.
+  - **Adicionar abelhas**: adiciona abelhas a uma colmeia específica.
+  - **Remover colmeia**: exclui uma colmeia pelo seu ID.
+
+### 2. **Cliente (Python)**
+- O cliente é um script Python que consome a API REST do servidor usando a biblioteca `requests`.
+- Ele faz requisições HTTP para os endpoints do servidor, passando parâmetros via URL.
+- Exemplos de uso no cliente:
+  - Criar uma colmeia para um apicultor.
+  - Listar todas as colmeias de um apicultor.
+  - Adicionar abelhas a uma colmeia.
+  - Remover uma colmeia.
+
+### 3. **Comunicação**
+- Toda a comunicação entre cliente e servidor é feita via HTTP, usando endpoints REST.
+- Não há uso de sockets puros, nem RMI (Java Remote Method Invocation).
+- O protocolo de comunicação é requisição/resposta via API REST (Web Service).
+
+---
+
+## Análise dos requisitos
+
+**Requisito:**  
+> Reimplemente o serviço remoto implementado no trabalho 2 através da comunicação cliente-servidor e organizado num protocolo de requisição/resposta. A comunicação entre cliente e servidor deve ser implementada via WS ou API. Não crie sockets ou RMI nesse trabalho!
+
+**Seu projeto:**
+- ✅ Utiliza comunicação cliente-servidor.
+- ✅ Organiza as operações em um protocolo de requisição/resposta (HTTP).
+- ✅ Implementa a comunicação via API REST (Web Service).
+- ✅ Não utiliza sockets nem RMI.
+- ✅ O cliente e o servidor estão separados e se comunicam via HTTP.
+
+**Conclusão:**  
+**Seu projeto está de acordo com os requisitos!** Ele reimplementa o serviço remoto usando uma API REST, com comunicação cliente-servidor via HTTP, sem uso de sockets ou RMI.
+
+Se quiser detalhes sobre algum fluxo específico ou sobre os endpoints, posso detalhar!
+
+-------------------------------------------------Perguntas:
+
+Ótima pergunta! Comparando este projeto (API REST) com um projeto que usaria **RMI (Remote Method Invocation)**, podemos levantar várias questões importantes:
+
+---
+
+### 1. **Interoperabilidade**
+- **API REST:** Permite comunicação entre sistemas escritos em diferentes linguagens (Java, Python, JavaScript, etc.), pois usa HTTP e formatos como JSON.
+- **RMI:** Funciona apenas entre aplicações Java, pois depende da serialização de objetos Java e do JVM.
+
+**Pergunta:**  
+> O sistema precisa ser acessado por clientes em outras linguagens além de Java?
+
+---
+
+### 2. **Facilidade de Deploy**
+- **API REST:** Pode ser hospedada em qualquer servidor web, acessível via navegador, curl, Postman, etc.
+- **RMI:** Precisa de configuração específica de registro de objetos remotos e portas, além de lidar com firewalls e NAT.
+
+**Pergunta:**  
+> O ambiente de rede é restrito ou exige configuração especial para portas e firewalls?
+
+---
+
+### 3. **Escalabilidade e Manutenção**
+- **API REST:** Facilita escalabilidade horizontal (load balancer, múltiplas instâncias), manutenção e atualização de endpoints.
+- **RMI:** Mais difícil de escalar e atualizar, pois depende de contratos de interface e versões de classes.
+
+**Pergunta:**  
+> O sistema precisa ser facilmente escalável e atualizado sem afetar clientes?
+
+---
+
+### 4. **Padronização e Ferramentas**
+- **API REST:** Usa padrões amplamente aceitos (HTTP, REST, JSON), com muitas ferramentas de teste e monitoramento.
+- **RMI:** Ferramentas são mais limitadas e específicas do ecossistema Java.
+
+**Pergunta:**  
+> É importante usar padrões amplamente aceitos e ferramentas de mercado?
+
+---
+
+### 5. **Segurança**
+- **API REST:** Pode usar HTTPS, autenticação JWT, OAuth, etc.
+- **RMI:** Segurança é mais complexa, exige configuração de políticas de segurança Java.
+
+**Pergunta:**  
+> O sistema precisa de autenticação, criptografia e controle de acesso robustos?
+
+---
+
+### 6. **Desempenho**
+- **API REST:** Pode ser mais lento devido à serialização/deserialização de JSON e overhead do HTTP.
+- **RMI:** Comunicação binária pode ser mais rápida, mas menos flexível.
+
+**Pergunta:**  
+> O desempenho da comunicação é um fator crítico?
+
+---
+
+## Resumindo
+
+Seu projeto REST é mais flexível, interoperável e fácil de manter do que um projeto RMI.  
+Essas questões ajudam a decidir qual tecnologia usar conforme os requisitos do sistema.
+
+
+#####################################
+Relatorio
+######################################
+
+Segue o relatório solicitado:
+
+---
+
+# Relatório do Trabalho 3 – Web Services (WS) ou Application Interface Programming (API)
+
+## 1. Descrição do Projeto
+
+O projeto consiste em um sistema para gerenciamento de apiários, permitindo o cadastro de apicultores, criação de colmeias, adição de abelhas e remoção de colmeias. O sistema foi desenvolvido seguindo o modelo cliente-servidor, onde o servidor expõe uma API RESTful e os clientes consomem os serviços remotamente.
+
+### Funcionalidades Implementadas
+
+- **Cadastro de Colmeias:** Permite criar colmeias associadas a um apicultor, informando capacidade de abelhas e mel.
+- **Listagem de Colmeias:** Permite consultar todas as colmeias de um apicultor específico.
+- **Adição de Abelhas:** Permite adicionar abelhas a uma colmeia, informando a quantidade e se a rainha está presente.
+- **Remoção de Colmeias:** Permite excluir uma colmeia pelo seu identificador.
+
+## 2. Aplicação dos Requisitos
+
+### 2.1 Comunicação Cliente-Servidor via WS/API
+
+O serviço remoto foi reimplementado utilizando uma API REST desenvolvida em Java com Spring Boot. Toda a comunicação entre cliente e servidor ocorre via protocolo HTTP, utilizando o padrão de requisição/resposta. Não foram utilizados sockets ou RMI, conforme exigido nos requisitos.
+
+### 2.2 Interação entre Estudantes e Multiplataforma
+
+A interação entre os membros da dupla se deu pela divisão das tarefas: um desenvolveu o servidor (API REST em Java) e o outro os clientes. Os clientes foram implementados em Python (e podem ser facilmente adaptados para outras linguagens, como JavaScript), garantindo o requisito de multiplataforma. Cada cliente realiza chamadas HTTP para os endpoints do servidor, consumindo os serviços de forma independente da linguagem utilizada no backend.
+
+### 2.3 Entrega e Organização
+
+O projeto está organizado em repositório, contendo:
+- Código fonte do servidor (Java/Spring Boot)
+- Código fonte dos clientes (Python)
+- Scripts de exemplo para testar os serviços
+- Documentação e este relatório
+
+Um vídeo foi gravado apresentando o funcionamento do sistema, mostrando o código-fonte e a interação entre cliente e servidor.
+
+## 3. Justificativa das Escolhas
+
+- **API REST:** Escolhida por ser padrão de mercado, interoperável e facilitar o consumo por clientes em diferentes linguagens.
+- **Spring Boot:** Permite rápida criação de APIs robustas, com integração fácil ao banco de dados e suporte a boas práticas de desenvolvimento.
+- **Python para o Cliente:** Linguagem simples e popular, facilitando testes e demonstração da interoperabilidade.
+- **Banco H2:** Utilizado para facilitar testes e evitar dependências externas.
+
+Essas escolhas garantem flexibilidade, escalabilidade e aderência aos requisitos do trabalho, além de facilitar a manutenção e evolução do sistema.
+
+---
+
+**Conclusão:**  
+O projeto atende integralmente aos requisitos do Trabalho 3, reimplementando o serviço remoto via API, promovendo interação entre estudantes e suportando múltiplas linguagens para os clientes. O sistema está pronto para ser entregue e demonstrado conforme solicitado.
