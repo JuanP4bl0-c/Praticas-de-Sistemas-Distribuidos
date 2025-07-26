@@ -3,7 +3,7 @@
 #include <curl/curl.h>
 #include <string.h>
 
-#define API_URL "http://192.168.0.102:8080/api"
+#define API_URL "http://172.25.210.208:8080/api"
 
 size_t write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
     size_t total_size = size * nmemb;
@@ -90,19 +90,42 @@ void remover_colmeia(int id_colmeia) {
     CURL *curl = curl_easy_init();
     if (curl) {
         char url[256];
-        snprintf(url, sizeof(url), "%s/colmeia_remove?idColmeia=%d", API_URL, id_colmeia);
+        // Corrigido o endpoint para usar path parameter (alinhado com o Spring Boot)
+        snprintf(url, sizeof(url), "%s/colmeia_del/%d", API_URL, id_colmeia);
 
+        // Configurações do CURL
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
         curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5L);
+        
+        // Headers (opcional, mas recomendado)
+        struct curl_slist *headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
-        printf("{Enviando DELETE para remover colmeia...}\n");
+        printf("Enviando DELETE para remover colmeia ID %d...\n", id_colmeia);
         CURLcode res = curl_easy_perform(curl);
+        
+        // Tratamento de erros aprimorado
         if (res != CURLE_OK) {
-            fprintf(stderr, "{Erro ao remover colmeia: %s}\n", curl_easy_strerror(res));
+            fprintf(stderr, "Erro na requisição: %s\n", curl_easy_strerror(res));
+        } else {
+            long http_code = 0;
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+            
+            if (http_code == 200) {
+                printf("Colmeia %d removida com sucesso!\n", id_colmeia);
+            } else {
+                fprintf(stderr, "Falha ao remover. HTTP Status: %ld\n", http_code);
+            }
         }
+        
+        // Limpeza
+        curl_slist_free_all(headers);
         curl_easy_cleanup(curl);
+    } else {
+        fprintf(stderr, "Falha ao inicializar libcurl.\n");
     }
 }
 
